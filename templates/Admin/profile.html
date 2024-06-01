@@ -1,0 +1,111 @@
+{% extends 'Admin/layouts/master.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex align-items-end flex-wrap">
+                    <div class="mr-md-3 mr-xl-5">
+                        <h2>Setting Page</h2>
+                        <p class="mb-md-0">Your can change all of your data here.</p>
+                    </div>
+                    <div class="d-flex">
+                        <i class="mdi mdi-home text-muted hover-cursor"></i>
+                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+                        <p class="text-primary mb-0 hover-cursor">Analytics</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+                        <i class="mdi mdi-download text-muted"></i>
+                    </button>
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                        <i class="mdi mdi-clock-outline text-muted"></i>
+                    </button>
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                        <i class="mdi mdi-plus text-muted"></i>
+                    </button>
+                    <button class="btn btn-primary mt-2 mt-xl-0">Download report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Basic form elements</h4>
+                    <p class="card-description">
+                        Basic form elements
+                    </p>
+                    <form class="forms-sample">
+                        <div class="d-flex">
+                            <div class="form-group col-lg-6">
+                                <label for="exampleInputName1">Firstname</label>
+                                <input name="first_name" type="text" class="form-control"
+                                       id="exampleInputName1"
+                                       placeholder="Name" value="{{ user.user.first_name }}">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="exampleInputName1">Lastname</label>
+                                <input name="last_name" type="text" class="form-control"
+                                       id="exampleInputName1"
+                                       placeholder="Lastname" value="{{ user.user.last_name }}">
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="form-group col-lg-5">
+                                <label for="exampleInputEmail3">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail3"
+                                       placeholder="Email" value="{{ user.user.email }}">
+                            </div>
+                            <div class="form-group col-lg-5">
+                                <label for="exampleInputPassword4">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword4"
+                                       placeholder="Password" disabled>
+                            </div>
+                            <div class="form-group col-lg-2">
+                                <label for="exampleSelectGender">Gender</label>
+                                <select class="form-control" id="exampleSelectGender">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-lg-flex">
+                            <div class="form-group col-lg-6">
+                                <label>File upload</label>
+                                <input type="file" name="profile_pic" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="file" class="form-control file-upload-info"
+                                           placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                                <button type="button" class="btn btn-danger btn-icon-text">
+                                                <i class="mdi mdi-upload btn-icon-prepend"></i>
+                                                  Upload
+                                                </button>
+                                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="exampleInputCity1">City</label>
+                                <input type="text" class="form-control" id="exampleInputCity1"
+                                       placeholder="Location">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Textarea</label>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

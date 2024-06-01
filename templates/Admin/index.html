@@ -1,0 +1,346 @@
+{% extends 'Admin/layouts/master.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex align-items-end flex-wrap">
+                    <div class="mr-md-3 mr-xl-5">
+                        <h2>Welcome back,</h2>
+                        <p class="mb-md-0">Your analytics dashboard template.</p>
+                    </div>
+                    <div class="d-flex">
+                        <i class="mdi mdi-home text-muted hover-cursor"></i>
+                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+                        <p class="text-primary mb-0 hover-cursor">Analytics</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                    <a href="/tracker/load-data/">
+
+                        <button type="button"
+                                class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+                            <i class="mdi mdi-account-convert text-danger"></i>
+                        </button>
+                    </a>
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                        <i class="mdi mdi-clock-outline text-muted"></i>
+                    </button>
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                        <i class="mdi mdi-plus text-muted"></i>
+                    </button>
+                    <button class="btn btn-primary mt-2 mt-xl-0">Download report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body dashboard-tabs p-0">
+                    <ul class="nav nav-tabs px-4" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview"
+                               role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sales-tab" data-toggle="tab" href="#sales" role="tab"
+                               aria-controls="sales" aria-selected="false">Sales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="purchases-tab" data-toggle="tab" href="#purchases"
+                               role="tab" aria-controls="purchases" aria-selected="false">Purchases</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content py-0 px-0">
+                        <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                             aria-labelledby="overview-tab">
+                            <div class="d-flex flex-wrap justify-content-xl-between">
+                                <!-- Button trigger modal -->
+                                <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-calendar mr-3 icon-lg text-primary"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <div class="input-group">
+                                            <input type="datetime-local" class="form-control" placeholder="Username"
+                                                   aria-label="Username"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Revenue</small>
+                                        <h5 class="mr-2 mb-0">${{ total_orders_sum }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Total views</small>
+                                        <h5 class="mr-2 mb-0">{{ visited }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Downloads</small>
+                                        <h5 class="mr-2 mb-0">{{ all_entities }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Flagged</small>
+                                        <h5 class="mr-2 mb-0">3497843</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
+                            <div class="d-flex flex-wrap justify-content-xl-between">
+                                <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-calendar mr-3 icon-lg text-primary"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <div class="input-group">
+                                            <input type="datetime-local" class="form-control" placeholder="Username"
+                                                   aria-label="Username"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi mdi-cart mr-3 icon-lg text-warning"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Total Orders</small>
+                                        <h5 class="mr-2 mb-0">{{ all_entities }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Total views</small>
+                                        <h5 class="mr-2 mb-0">{{ visited }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Revenue</small>
+                                        <h5 class="mr-2 mb-0">${{ total_orders_sum }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Flagged</small>
+                                        <h5 class="mr-2 mb-0">3497843</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="purchases" role="tabpanel"
+                             aria-labelledby="purchases-tab">
+                            <div class="d-flex flex-wrap justify-content-xl-between">
+
+                                <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-calendar mr-3 icon-lg text-primary"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <div class="input-group">
+                                            <input type="datetime-local" class="form-control" placeholder="Username"
+                                                   aria-label="Username"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Revenue</small>
+                                        <h5 class="mr-2 mb-0">${{ total_orders_sum }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-eye mr-3 icon-lg text-success"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Total views</small>
+                                        <h5 class="mr-2 mb-0">{{ visited }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Downloads</small>
+                                        <h5 class="mr-2 mb-0">{{ all_entities }}</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                                    <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
+                                    <div class="d-flex flex-column justify-content-around">
+                                        <small class="mb-1 text-muted">Flagged</small>
+                                        <h5 class="mr-2 mb-0">3497843</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chartjs-size-monitor"
+                         style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                    <h4 class="card-title">Line chart</h4>
+                    <canvas id="lineChart" width="523" height="261"
+                            style="display: block; height: 209px; width: 419px;"
+                            class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chartjs-size-monitor"
+                         style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                    <h4 class="card-title">Bar chart</h4>
+                    <canvas id="barChart" width="523" height="261"
+                            style="display: block; height: 209px; width: 419px;"
+                            class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Cash deposits</p>
+                    <p class="mb-4">To start a blog, think of a topic about and first brainstorm party is
+                        ways to write details</p>
+                    <div id="cash-deposits-chart-legend" class="d-flex justify-content-center pt-3"></div>
+                    <canvas id="cash-deposits-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chartjs-size-monitor"
+                         style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                    <h4 class="card-title">Doughnut chart</h4>
+                    <canvas id="doughnutChart" width="523" height="261"
+                            style="display: block; height: 209px; width: 419px;"
+                            class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="table-user">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-title">Recent Purchases</p>
+                    <div class="table-responsive">
+                        <table id="recent-purchases-listing" class="table">
+                            <thead>
+                            <tr>
+                                <th>NumOrder</th>
+                                <th>ClientCode</th>
+                                <th>ClientName</th>
+                                <th>Total</th>
+                                <th>TypePrice</th>
+                                <th>DateOrder</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in orders %}
+                                <tr>
+                                    <td>{{ i.NumOrder }}</td>
+                                    <td>@{{ i.ClientCode }}</td>
+                                    <td>{{ i.ClientName }}</td>
+                                    <td>{{ i.Total }}</td>
+                                    <td>{{ i.TypePrice }}</td>
+                                    <td>{{ i.DateOrder }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end">
+                                {% if orders.has_previous %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page={{ orders.previous_page_number }}">Prev</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link">Prev</a></li>
+                                {% endif %}
+                                {% for i in orders.paginator.get_elided_page_range %}
+                                    {% if articles.number == i %}
+                                        <li class="page-item active"><a class="page-link"
+                                                                        href="?page={{ i }}">{{ i }}</a></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for page_number in page_obj.adjusted_elided_pages %}
+                                    {% if page_number == page_obj.paginator.ELLIPSIS %}
+                                        {{ page_number }}
+                                    {% else %}
+                                        <a
+                                                href="{% url 'terms-by-page' page_number %}"
+                                                class="{% if page_number == page_obj.number %}current{% endif %}"
+                                        >
+                                            {{ page_number }}
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if orders.has_next %}
+                                    <li class="page-item"><a class="page-link"
+                                                             href="?page={{ orders.next_page_number }}">Next</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link">Next</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

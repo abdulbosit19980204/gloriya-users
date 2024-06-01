@@ -1,0 +1,165 @@
+{% extends 'Admin/layouts/master.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex align-items-end flex-wrap">
+                    <div class="mr-md-3 mr-xl-5">
+                        <h2>Channel and Groups Page</h2>
+                        <p class="mb-md-0">Your can change all of your data here.</p>
+                    </div>
+                    <div class="d-flex">
+                        <i class="mdi mdi-home text-muted hover-cursor"></i>
+                        <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+                        <p class="text-primary mb-0 hover-cursor">Analytics</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+                        <i class="mdi mdi-download text-muted"></i>
+                    </button>
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                        <i class="mdi mdi-clock-outline text-muted"></i>
+                    </button>
+                    <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+                        <i class="mdi mdi-plus text-muted"></i>
+                    </button>
+                    <button class="btn btn-primary mt-2 mt-xl-0">Download report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Add a new data</h4>
+                    <p class="card-description">
+                        Use the <code>@username</code> to add a new channel or group
+                    </p>
+                    <form class="form-inline" method="post" action="/tracker/add-channel/">
+                        {% csrf_token %}
+                        <div class="input-group mb-3 px-3" disabled>
+                            <span class="input-group-text" id="basic-addon1">Title</span>
+                            <input type="text" class="form-control" placeholder="Title" aria-label="Username"
+                                   aria-describedby="basic-addon1" disabled readonly>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">@</span>
+                            <input type="text" class="form-control" name="username" placeholder="Username"
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                        <div class="form-check mx-sm-2">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="synced">
+                                Checked
+                                <i class="input-helper"></i></label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mb-2">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Striped Table</h4>
+                    <p class="card-description">
+                        Add class <code>.table-striped</code>
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th>
+                                    Profile Image
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Progress
+                                </th>
+                                <th>
+                                    Users Amount
+                                </th>
+                                <th>
+                                    Last update
+                                </th>
+                                <th>
+                                    Checked
+                                </th>
+                                <th>
+                                    Edite
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for channel in channels %}
+                                <tr>
+                                    <td class="py-1">
+                                        {{ channel.id }}
+                                    </td>
+                                    <td class="py-1">
+                                        <img src="{% static '/images/faces/face1.jpg' %}" alt="image">
+                                    </td>
+                                    <td>
+                                        <a href="http://t.me/{{ channel.username }}">@{{ channel.username }}</a>
+                                    </td>
+                                    <td>
+                                        <div class="progress" style="height: 5px;">
+                                            <div class="progress-bar-striped bg-success" role="progressbar"
+                                                 style="width: {{ channel.id|add:'10' }}%;" aria-valuenow="25"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        $ 77.99
+                                    </td>
+                                    <td>
+                                        {{ channel.updated_at }}
+                                    </td>
+                                    <td>
+
+                                        <div class="form-check form-switch">
+                                            {% if channel.is_synced %}
+                                                <input class="form-check-input" type="checkbox"
+                                                       id="flexSwitchCheckChecked"
+                                                       checked>
+                                                <label class="form-check-label"
+                                                       for="flexSwitchCheckChecked"> </label>
+                                            {% else %}
+                                                <input class="form-check-input" type="checkbox"
+                                                       id="flexSwitchCheckChecked"
+                                                >
+                                                <label class="form-check-label"
+                                                       for="flexSwitchCheckChecked"> </label>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="/channels/add-channel/pk={{ channel.id }}"
+                                           class="mdi mdi-delete-forever text-danger fs-5"></a>
+                                        <a href="/" class="mdi mdi-border-color fs-5"></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

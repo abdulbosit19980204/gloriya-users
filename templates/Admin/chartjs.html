@@ -1,0 +1,92 @@
+{% extends 'Admin/layouts/master.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chartjs-size-monitor"
+                         style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                    <h4 class="card-title">Line chart</h4>
+                    <canvas id="myChart" width="523" height="261"
+                            style="display: block; height: 209px; width: 419px;"
+                            class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chartjs-size-monitor"
+                         style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                        <div class="chartjs-size-monitor-expand"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                             style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                        </div>
+                    </div>
+                    <h4 class="card-title">Bar chart</h4>
+                    <canvas id="barChart" width="523" height="261"
+                            style="display: block; height: 209px; width: 419px;"
+                            class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+
+                labels: ['a', 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                {#labels: {{ data }},#}
+                datasets:
+                    [
+                        {
+                            label: '# of Votes {{ labbel }}',
+                            data: {{ data1 }},
+                            borderWidth: 1
+                        },
+                        {
+                            label: '# of Votes {{ labbel }}',
+                            data: {{ data2 }},
+                            borderWidth: 2
+                        },
+                        {
+                            label: '# of Votes {{ labbel }}',
+                            data: {{ data3 }},
+                            borderWidth: 2
+                        }
+                    ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        })
+        ;
+    </script>
+
+{% endblock %}
