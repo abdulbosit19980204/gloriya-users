@@ -289,9 +289,9 @@
                             <tbody>
                             {% for i in orders %}
                                 <tr>
-                                    <td>{{ i.NumOrder }}</td>
+                                    <td><a href="get-order-detail/{{ i.NumOrder }}">{{ i.NumOrder }}</a></td>
                                     <td>@{{ i.ClientCode }}</td>
-                                    <td>{{ i.ClientName }}</td>
+                                    <td><a href="/get-client-info/{{ i.ClientCode }}">{{ i.ClientName }}</a></td>
                                     <td>{{ i.Total }}</td>
                                     <td>{{ i.TypePrice }}</td>
                                     <td>{{ i.DateOrder }}</td>
